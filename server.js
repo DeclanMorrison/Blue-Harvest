@@ -20,7 +20,7 @@ app.use(express.json());
 // passport stuff
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static("client/build"));
 
 // We need to use sessions to keep track of our user's login status
 // app.use(cookieParser('cookit'));
@@ -34,9 +34,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/public"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/public"));
+// }
 
 // the view files are JavaScript files, hence the extension
 app.set('view engine', 'js');
