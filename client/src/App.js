@@ -1,7 +1,9 @@
 import React from "react";
-import Routes from "./Routes";
 import { withStyles } from '@material-ui/core/styles';
 import 'typeface-fjalla-one';
+import { Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 
 const styles = {
@@ -43,7 +45,10 @@ class App extends React.Component {
   render () {
     // const { classes } = this.props;
     return (
-        <Routes/>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/login" exact component={Login} />
+      </Switch>
     );
   }
 };
