@@ -16,18 +16,19 @@ const styles = {
 class App extends React.Component {
 
   state = {
-    isLoggedIn: false
+    isLoggedIn : false
   };
 
   updateLoginState = () => {
-    this.setState({ isLoggedIn: !this.state.isLoggedIn });
+    this.setState({isLoggedIn : !this.state.isLoggedIn});
   };
 
-  render() {
+  render () {
+    // const { classes } = this.props;
     return (
-      <Routes />
+        <Routes/>
     );
-  };
+  }
 };
 
 export default withStyles(styles)(App);

@@ -10,38 +10,42 @@ module.exports = (connection, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
+
     firstName: {
       type: DataTypes.STRING,
       notEmpty: true
     },
+
     lastName: {
       type: DataTypes.STRING,
       notEmpty: true
     },
+
     email: {
       type: DataTypes.STRING,
       validate: {
         isEmail: true
       }
     },
+
     password: {
       type: DataTypes.STRING,
       allowNull: false
     },
+
     last_login: {
       type: DataTypes.DATE
     },
+
     status: {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active"
     }
   });
-
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
-  
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // In this case, before a User is created, we will automatically hash their password
   User.hook("beforeCreate", function(user) {

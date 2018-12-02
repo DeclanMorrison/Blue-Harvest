@@ -9,7 +9,7 @@ module.exports = {
       where: {
         email: newuser.email
       }
-    }).then(function (result) {
+    }).then(function(result) {
       console.log(result.length);
       if (result.length != 0) {
         console.log(`\nEmail already taken! \n`);
@@ -27,12 +27,12 @@ module.exports = {
           .then(data => {
             res.json({ data: data });
           })
-          .catch(function (err) {
+          .catch(function(err) {
             console.log(err);
             res.json(err);
             // res.status(422).json(err.errors[0].message);
           });
-      };
+      }
     });
   },
 
@@ -41,13 +41,10 @@ module.exports = {
     res.json({
       message: "user logged out"
     });
-    console.log(`signing out ${req.body.id}`);
-    req.logout();
-    res.redirect("/");
   },
 
   saveRecipe: (req, res) => {
-    console.log(`logging req.user  ${JSON.stringify(req.user)}\n`);
+    // console.log(`logging req.user  ${JSON.stringify(req.user)}\n`);
 
     if (req.isAuthenticated()) {
       let recipe = req.body;
@@ -63,7 +60,7 @@ module.exports = {
         .then(data => {
           return res.json({ data: data });
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.log(err);
           return res.json({ err });
         });
@@ -74,7 +71,7 @@ module.exports = {
   },
 
   getFavorites: (req, res) => {
-    console.log(`logging req.user - ${JSON.stringify(req.user)}\n`);
+    // console.log(`logging req.user - ${JSON.stringify(req.user)}\n`);
     if (req.isAuthenticated()) {
       let userID = req.user.id;
       // add to our database
@@ -87,7 +84,7 @@ module.exports = {
           // console.log(`DB query result is ${JSON.stringify(data)}`)
           return res.json({ hits: data });
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.log(err);
           return res.json({ err });
         });
@@ -107,4 +104,5 @@ module.exports = {
       return res.json({ message: `recipe removed from favorites` });
     });
   },
+
 };

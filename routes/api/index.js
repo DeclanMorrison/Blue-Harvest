@@ -3,6 +3,7 @@
 const router = require("express").Router();
 const controller = require("../../controllers/controller.js");
 const passport = require("../../config/passport");
+// const checkAuth = require("../../config/middleware/checkAuth");
 
 // // login section
 router.post("/signup", controller.signup);
@@ -18,14 +19,24 @@ router.post(
     });
   }
 );
+// logout
+router.post("/logout", controller.logout);
 
 // save recipe
 router.post("/saveRecipe", controller.saveRecipe);
-
 // get favorites
 router.get("/getFavorites", controller.getFavorites);
 
 router.delete("/removeFavorite", controller.removeFavorite);
+
+// //checking if signed in
+// router.get("/checkAuth", checkAuth, function(req, res) {
+//   console.log(`${req.user} is checking auth...`);
+//   return res.status(200).json({
+//     status: "Login successful!"
+//   });
+// });
+
 
 // Route for logging user out
 router.get("/logout", controller.logout);

@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { GridList, GridListTile, Typography } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import CalendarDay from './CalendarDay';
+import Typography from '@material-ui/core/Typography'
+import { getDay } from 'date-fns';
+import { GridListTileBar } from '@material-ui/core';
+
+// import tileData from './tileData';
 
 const styles = theme => ({
-
+  
   gridList: {
     width: `100%`,
     flexWrap: 'nowrap',
@@ -24,16 +30,16 @@ const styles = theme => ({
 });
 
 class SingleLineGridList extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
   };
-
+  
   state = {
     width: "",
   };
 
   handleWindowResize = () => {
-    this.setState({ width: window.innerWidth - 125 });
+    this.setState({width: window.innerWidth - 125});
   };
 
   componentWillMount = () => {
@@ -48,7 +54,7 @@ class SingleLineGridList extends React.Component {
     window.removeEventListener('resize', this.handleWindowResize);
   };
 
-  render() {
+  render () {
     const { classes } = this.props;
     const rootStyle = {
       width: `${this.state.width}px`,
@@ -56,21 +62,22 @@ class SingleLineGridList extends React.Component {
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden',
+      // backgroundColor: theme.palette.background.paper,
     };
 
     return (
-      <div style={rootStyle}>
-        <GridList className={classes.gridList} cols={Math.floor((window.innerWidth) / 200)}>
-          {Object.keys(this.props.calendarRecipes).map(title => (
-            <GridListTile key={title}>
-              <Typography component="h6" variant="h6">{title}</Typography>
+    <div style={rootStyle}>
+      <GridList className={classes.gridList} cols={Math.floor((window.innerWidth)/200)}>
+        {Object.keys(this.props.calendarRecipes).map(title => (
+          <GridListTile key={title}>
+            <Typography component="h6" variant="h6">{title}</Typography>            
 
-              <CalendarDay title={title} recipe={this.props.calendarRecipes[title]} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar} handleAddToIngredients={this.props.handleAddToIngredients} />
+            <CalendarDay title={title} recipe={this.props.calendarRecipes[title]} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar} handleAddToIngredients={this.props.handleAddToIngredients}/>
 
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+          </GridListTile>
+        ))}
+      </GridList>
+    </div>
     )
   };
 }

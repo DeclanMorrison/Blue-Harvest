@@ -78,4 +78,4 @@ SimpleModal.propTypes = {
 // We need an intermediary variable for handling the recursive nesting.
 const SimpleModalWrapped = withStyles(styles)(SimpleModal);
 
-export default SimpleModal;
+export default RecipePopout;

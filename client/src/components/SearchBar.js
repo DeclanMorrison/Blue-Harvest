@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import {Button} from '@material-ui/core';
 import axios from 'axios';
 
 const styles = theme => ({
@@ -64,11 +65,11 @@ class SearchBar extends React.Component {
       this.props.handleUpdateSearchTerm(this.state.searchTerm);
       console.log(response.data);
     });
-  };
+  }
 
   render() {
     const { classes } = this.props;
-    return (
+    return(
       <form onSubmit={this.handleSearchClick} className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-name"

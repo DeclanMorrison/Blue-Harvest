@@ -1,7 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import { Done, Close } from "@material-ui/icons";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Done from "@material-ui/icons/Done";
+import Close from "@material-ui/icons/Close";
 import API from "../../utils/API";
 
 class LoginDialog extends React.Component {
@@ -24,10 +31,9 @@ class LoginDialog extends React.Component {
     let password = this.state.password;
     if (email && password) {
       API.login(email, password).then(res => {
-        console.log(`attempting login with email:${email} and ${password}`);
         if (res.data.message !== "user authenticated") {
           console.log(`user not authenticated`);
-
+         
         } else {
           console.log(`success! result: ${res.data.message}`);
           this.props.handleCloseLogin();
@@ -35,34 +41,24 @@ class LoginDialog extends React.Component {
         }
       });
     } else {
+      // set it up to alert user that form input/s are empty and to retry login
       console.log("Something went wrong with login")
-    };
+    }
   };
 
   handleLogout = () => {
+    console.log("logging out")
     API.logout().then(res => {
       console.log(res);
     });
-
     this.props.handleCloseLogin();
-  };
-
-  checkAuth = () => {
-    let user = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    API.checkAuth(user).then((res) => {
-      console.log(res)
-    });
   };
 
   render() {
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     } else {
       return (
         <Dialog
@@ -114,8 +110,7 @@ class LoginDialog extends React.Component {
           </DialogActions>
         </Dialog>
       );
-    };
-  };
-};
-
+    }
+  }
+}
 export default LoginDialog;

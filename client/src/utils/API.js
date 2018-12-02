@@ -17,21 +17,21 @@ export default {
     return axios.post("/api/saveRecipe",recipe);
   },
 
+  // saveRecipe: function(recipeData) {
+  //   return axios.post("/api/saveRecipe", recipeData);
+  // },
   query: function() {
     console.log(`querying...`);
     return axios.get("/api/search");
   },
-
   login: function(email, password) {
     console.log(`attempting login...`);
     return axios.post("/api/login", { email: email, password: password });
   },
-
   logout: function() {
     console.log(`attempting logout...`);
-    return axios.get("/api/logout");
+    return axios.post("/api/logout");
   },
-  
   signUp: function(user) {
     console.log(`registering user...${user.email}`);
     return axios.post("/api/signup", user);

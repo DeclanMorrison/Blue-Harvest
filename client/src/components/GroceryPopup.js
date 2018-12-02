@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Modal } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 import ShoppingIcon from '@material-ui/icons/ShoppingCartOutlined'
 import ShoppingList from './ShoppingList';
 
@@ -44,11 +46,13 @@ class SimpleModal extends React.Component {
         </Modal>
       </div>
     );
-  };
-};
+  }
+}
 
 SimpleModal.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+// We need an intermediary variable for handling the recursive nesting.
 
 export default withStyles(styles)(SimpleModal);
