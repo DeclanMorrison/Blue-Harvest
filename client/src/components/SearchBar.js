@@ -50,9 +50,22 @@ class SearchBar extends React.Component {
     }).then(response => {
       this.props.handleUpdateRecipes(response.data);
       this.props.handleUpdateSearchTerm(this.state.searchTerm);
+      this.props.handleView('Recommended');
       console.log(response.data);
     });
   };
+
+  handleQueryFavorites = event => {
+    console.log("retrieving favorite recipes")
+    event.preventDefault();
+    axios.get("https://api.edamam.com/search", {
+    }).then(response => {
+
+      this.props.handleUpdateRecipes(response.data);
+      this.props.handleUpdateSearchTerm(this.state.searchTerm);
+      console.log(response.data);
+    });
+  }
 
   render() {
     const { classes } = this.props;

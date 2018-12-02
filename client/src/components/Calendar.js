@@ -71,7 +71,9 @@ class SingleLineGridList extends React.Component {
         {Object.keys(this.props.calendarRecipes).map(title => (
           <GridListTile key={title}>
             <Typography component="h6" variant="h6">{title}</Typography>            
+
             <CalendarDay title={title} recipe={this.props.calendarRecipes[title]} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar} handleAddToIngredients={this.props.handleAddToIngredients}/>
+
           </GridListTile>
         ))}
       </GridList>

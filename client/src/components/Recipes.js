@@ -7,6 +7,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
+
 import InfoIcon from "@material-ui/icons/Info";
 import recipes from "./recipesobj";
 import StarIcon from "@material-ui/icons/StarRateRounded";
@@ -85,6 +86,7 @@ class TitlebarGridList extends React.Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <div className={classes.root}>
         <GridList cellHeight={130} cols={this.state.cols} className={classes.gridList}>
@@ -100,7 +102,9 @@ class TitlebarGridList extends React.Component {
                   <IconButton className={classes.icon}>
 
                   <Tooltip TransitionComponent={Zoom} title="Add to Favorites">
+
                     <StarIcon onClick={() => this.handleAddToFavorites(hit.recipe.label,hit.recipe.image,hit.recipe.url,hit.recipe.ingredients)}/>
+
                     {/* Add functionality to add to favorites */}
                   </Tooltip>
                   <Tooltip TransitionComponent={Zoom} title="View on Site">

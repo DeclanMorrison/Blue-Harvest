@@ -91,12 +91,12 @@ class SignupDialog extends React.Component {
       errors["password"] = "*Please enter your password.";
     }
 
-    // if (typeof user["password"] !== "undefined") {
-    //   if (!user["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
-    //     formIsValid = false;
-    //     errors["password"] = "*Please enter secure and strong password.";
-    //   }
-    // }
+    if (typeof user["password"] !== "undefined") {
+      if (!user["password"].match(/^.*((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/)) {
+        formIsValid = false;
+        errors["password"] = "*Please enter secure and strong password.";
+      }
+    }
 
     if (formIsValid) {
       API.signUp(user).then((res) => {

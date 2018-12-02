@@ -11,7 +11,7 @@ const sequelize = require("sequelize");
 // const routes = require("./routes");
 const app = express();
 var db = require("./models");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -32,11 +32,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/public"));
-// }
 
 // the view files are JavaScript files, hence the extension
 app.set('view engine', 'js');

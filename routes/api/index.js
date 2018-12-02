@@ -22,6 +22,11 @@ router.post(
 
 // save recipe
 router.post("/saveRecipe", controller.saveRecipe);
+// get favorites
+router.get("/getFavorites", controller.getFavorites);
+
+
+router.delete("/removeFavorite", controller.removeFavorite);
 
 // //checking if signed in
 // router.get("/checkAuth", checkAuth, function(req, res) {
@@ -31,16 +36,8 @@ router.post("/saveRecipe", controller.saveRecipe);
 //   });
 // });
 
+
 // Route for logging user out
 router.get("/logout", controller.logout);
-
-// recipe routes
-router.get("/user_data", controller.getUserData);
-
-router.get("/favorites", controller.getFavoriteRecipes);
-
-router.get("/findOneFavorite", controller.findOneFavorite);
-
-router.get("/findRecipes", controller.findRecipes);
 
 module.exports = router;

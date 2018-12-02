@@ -72,7 +72,7 @@ class MediaCard extends Component {
             <CardContent>
               <img className={classes.logo} src={Logo} alt="logo"/>
               <Typography component="p">
-                To start please Log In. If you do not have an account please Sigh Up
+                To start please Log In. If you do not have an account please Sign Up
             </Typography>
             </CardContent>
           </CardActionArea>
@@ -85,13 +85,7 @@ class MediaCard extends Component {
               <Create />
               Sign Up
           </Button>
-          
-          <Button onClick={this.handleOpenAppbar} size="large" color="secondary" className={classes.button}>
-            <Link to={"/"}>Test</Link>
-              
-          </Button>
-
-
+        
           </CardActions>
         </Card>
         

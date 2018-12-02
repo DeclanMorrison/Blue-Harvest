@@ -113,10 +113,7 @@ class LoginDialog extends React.Component {
               <Close />
               Cancel
             </Button>
-            <Button onClick={this.handleLogout} color="secondary">
-              <Close />
-              logout
-            </Button>
+
             <Button onClick={this.handleSignInAttempt} color="primary">
               <Done />
               Log In
