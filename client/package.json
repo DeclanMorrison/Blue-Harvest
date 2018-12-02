@@ -1,8 +1,12 @@
 {
-  "name": "mern",
+  "name": "deploy",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://192.168.20.20:3001/",
+  "engines": {
+    "npm": "5.6.0",
+    "node": "8.11.1"
+  },
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
