@@ -41,7 +41,7 @@ app.set('pages', './');
 app.use(routes);
 
 // Syncing our database and logging a message to the user upon success
-db.connection.sync().then(function() {
+db.connection.sync({force:true}).then(function() {
   console.log("\nDB connected\n")
   
   // Start the API server
