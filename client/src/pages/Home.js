@@ -107,14 +107,14 @@ class Home extends React.Component {
   getFavorites = () => {
     console.log(`getting favorites`);
     API.getFavorites().then(res => {
-      // console.log(res)
+      console.log(res)
       if (res.data.message === "user not signed in") {
         this.setState({ redirect: true });
       } else {
         let recipeList = res.data.hits;
-        // console.log(res);
+        console.log(res);
         this.setState({ favorites: recipeList });
-        // console.log(`Favorites are - ${this.state.favorites}`);
+        console.log(`Favorites are - ${this.state.favorites}`);
       }
     });
   };
