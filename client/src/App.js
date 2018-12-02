@@ -16,7 +16,24 @@ const styles = {
 class App extends React.Component {
 
   state = {
+    data: null,
     isLoggedIn : false
+  };
+
+  componentDidMount() {
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express}))
+      .catch(err => console.log(err));
+  };
+
+  callBackendAPI = async () => {
+    const response = await fetch('/');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
   };
 
   updateLoginState = () => {

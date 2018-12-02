@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm run start:dev",
+    "start": "npm run start:prod && npm run client",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -27,7 +27,6 @@
     "bcrypt-nodejs": "^0.0.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "if-env": "1.0.3",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
     "passport": "^0.4.0",
