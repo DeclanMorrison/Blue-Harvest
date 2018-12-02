@@ -4,6 +4,10 @@ const apiRoutes = require("./api");
 // Requiring our custom middleware for checking if a user is logged in
 // var checkAuth = require("../config/middleware/checkAuth");
 
+router.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/public/index.html"));
+})
+
 // // API Routes
 router.use("/api", apiRoutes);
 
