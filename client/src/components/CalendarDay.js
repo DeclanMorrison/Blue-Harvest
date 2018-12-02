@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles, Card, GridListTileBar, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/CloseRounded';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles, 
-         Card,
-         CardContent,
-         Typography, 
-         CardMedia, 
-         GridListTileBar } from '@material-ui/core';
 
 const styles = {
   card: {
@@ -31,21 +25,21 @@ function SimpleCard(props) {
   return (
     <Card className={classes.card}>
       {Object.keys(props.recipe).length === 0 ? <div></div> :
-      <React.Fragment>
-        <img src={props.recipe.image}/>
-        <GridListTileBar
-          className={classes.titleBar}
-          title={props.recipe.label}
-          titlePosition="top"
-          actionIcon={
-            <IconButton className={classes.icon} onClick={() => props.handleAddRecipeToCalendar({}, props.title)}>
-              <DeleteIcon />
-            </IconButton>
-          }
-          actionPosition="right"
+        <React.Fragment>
+          <img src={props.recipe.image} />
+          <GridListTileBar
+            className={classes.titleBar}
+            title={props.recipe.label}
+            titlePosition="top"
+            actionIcon={
+              <IconButton className={classes.icon} onClick={() => props.handleAddRecipeToCalendar({}, props.title)}>
+                <DeleteIcon />
+              </IconButton>
+            }
+            actionPosition="right"
           />
 
-      </React.Fragment>}
+        </React.Fragment>}
     </Card>
   );
 }

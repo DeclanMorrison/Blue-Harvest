@@ -2,24 +2,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import IconButton from "@material-ui/core/IconButton";
+import { Zoom, Tooltip, GridList, GridListTile, GridListTileBar, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/DeleteForever";
-import InfoIcon from "@material-ui/icons/Info";
-import recipes from "./recipesobj";
 import OpenIcon from "@material-ui/icons/ExitToAppRounded";
-import DropIcon from "@material-ui/icons/KeyboardArrowDownRounded";
-import { Zoom, Tooltip } from "@material-ui/core";
 import Menu from "../components/Menu";
-import defaultRecipes from './recipesobj';
 import API from "../utils/API";
 
 const styles = theme => ({
   root: {
-    // width: `${window.innerWidth - 300}px`,
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
@@ -32,7 +22,7 @@ const styles = theme => ({
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
-  }
+  },
 });
 
 class TitlebarGridList extends React.Component {
@@ -63,6 +53,7 @@ class TitlebarGridList extends React.Component {
   handleOpenInSite = url => {
     window.open(url);
   };
+  
   handleRemoveFavorite = (id) => {
     console.log(`removing recipe by id : ${id}`)
     API.removeFavoriteById(id).then(res => {
@@ -77,25 +68,19 @@ class TitlebarGridList extends React.Component {
       <div className={classes.root}>
         <GridList cellHeight={130} cols={this.state.cols} className={classes.gridList}>
           {(this.props.favorites).map((fav, index) => (
-            
             <GridListTile key={index}>
-
               <img src={fav.image} alt={fav.label} />
               <GridListTileBar
                 title={fav.label}
-                // subtitle={<span>by: {tile.author}</span>}
                 actionIcon={
                   <IconButton className={classes.icon}>
-
-                  <Tooltip TransitionComponent={Zoom} title="Remove from favorites">
-                    <DeleteIcon onClick={()=>{this.handleRemoveFavorite(fav.id)}}/>
-                    {/* Add functionality to add to favorites */}
-                  </Tooltip>
-                  <Tooltip TransitionComponent={Zoom} title="View on Site">
-                    <OpenIcon onClick={() => this.handleOpenInSite(fav.url)}/>
-                  </Tooltip>
-                    <Menu recipe={fav} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar}/> 
-                    {/* Add functionality to add to calendar */}
+                    <Tooltip TransitionComponent={Zoom} title="Remove from favorites">
+                      <DeleteIcon onClick={() => { this.handleRemoveFavorite(fav.id) }} />
+                    </Tooltip>
+                    <Tooltip TransitionComponent={Zoom} title="View on Site">
+                      <OpenIcon onClick={() => this.handleOpenInSite(fav.url)} />
+                    </Tooltip>
+                    <Menu recipe={fav} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar} />
                   </IconButton>
                 }
               />
@@ -104,8 +89,8 @@ class TitlebarGridList extends React.Component {
         </GridList>
       </div>
     );
-  }
-}
+  };
+};
 
 TitlebarGridList.propTypes = {
   classes: PropTypes.object.isRequired

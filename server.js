@@ -6,8 +6,6 @@ const routes = require("./routes");
 // Requiring passport as we've configured it
 let passport = require("./config/passport");
 
-const sequelize = require("sequelize");
-
 // const routes = require("./routes");
 const app = express();
 var db = require("./models");
@@ -23,13 +21,13 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 
 // We need to use sessions to keep track of our user's login status
-// app.use(cookieParser('cookit'));
 app.use(
   session({ 
     secret: "cookit", 
     name: "cookit_Cookie"
    })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -45,6 +43,7 @@ app.use(routes);
 // Syncing our database and logging a message to the user upon success
 db.connection.sync().then(function() {
   console.log("\nDB connected\n")
+  
   // Start the API server
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

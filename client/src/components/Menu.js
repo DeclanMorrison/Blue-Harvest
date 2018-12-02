@@ -1,11 +1,9 @@
 import React from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Tooltip, Zoom, Menu, MenuItem } from '@material-ui/core';
 import DropIcon from '@material-ui/icons/DateRangeRounded';
-import {Tooltip, Zoom } from '@material-ui/core';
 
 class SimpleMenu extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   };
 
@@ -36,13 +34,9 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={() => this.handleClose("Monday")}>Monday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Tuesday")}>Tuesday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Wednesday")}>Wednesday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Thursday")}>Thursday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Friday")}>Friday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Saturday")}>Saturday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Sunday")}>Sunday</MenuItem>
+          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(value => {
+            <MenuItem onClick={() => this.handleClose(value)}>{value}</MenuItem>
+          })}
         </Menu>
       </React.Fragment>
     );

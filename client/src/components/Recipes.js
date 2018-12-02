@@ -2,27 +2,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import IconButton from "@material-ui/core/IconButton";
-
-import InfoIcon from "@material-ui/icons/Info";
-import recipes from "./recipesobj";
+import { GridList, GridListTile, GridListTileBar, IconButton, Zoom, Tooltip } from '@material-ui/core';
 import StarIcon from "@material-ui/icons/StarRateRounded";
 import OpenIcon from "@material-ui/icons/ExitToAppRounded";
-import DropIcon from "@material-ui/icons/KeyboardArrowDownRounded";
-import { Zoom, Tooltip } from "@material-ui/core";
+import defaultRecipes from "./recipesobj";
 import Menu from "../components/Menu";
-import defaultRecipes from './recipesobj';
 import API from "../utils/API";
 
 
 
 const styles = theme => ({
   root: {
-    // width: `${window.innerWidth - 300}px`,
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
@@ -35,7 +25,7 @@ const styles = theme => ({
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
-  }
+  },
 });
 
 class TitlebarGridList extends React.Component {
@@ -66,6 +56,7 @@ class TitlebarGridList extends React.Component {
   handleOpenInSite = url => {
     window.open(url);
   };
+
   handleAddToFavorites = (name, image, url, ingredients) => {
     console.log(name);
     let recipe = {};
@@ -91,27 +82,19 @@ class TitlebarGridList extends React.Component {
       <div className={classes.root}>
         <GridList cellHeight={130} cols={this.state.cols} className={classes.gridList}>
           {(this.props.recipes.length === 0 ? defaultRecipes.hits : this.props.recipes).map((hit, index) => (
-            
             <GridListTile key={index}>
-
               <img src={hit.recipe.image} alt={hit.recipe.label} />
               <GridListTileBar
                 title={hit.recipe.label}
-                // subtitle={<span>by: {tile.author}</span>}
                 actionIcon={
                   <IconButton className={classes.icon}>
-
-                  <Tooltip TransitionComponent={Zoom} title="Add to Favorites">
-
-                    <StarIcon onClick={() => this.handleAddToFavorites(hit.recipe.label,hit.recipe.image,hit.recipe.url,hit.recipe.ingredients)}/>
-
-                    {/* Add functionality to add to favorites */}
-                  </Tooltip>
-                  <Tooltip TransitionComponent={Zoom} title="View on Site">
-                    <OpenIcon onClick={() => this.handleOpenInSite(hit.recipe.url)}/>
-                  </Tooltip>
-                    <Menu recipe={hit.recipe} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar}/> 
-                    {/* Add functionality to add to calendar */}
+                    <Tooltip TransitionComponent={Zoom} title="Add to Favorites">
+                      <StarIcon onClick={() => this.handleAddToFavorites(hit.recipe.label, hit.recipe.image, hit.recipe.url, hit.recipe.ingredients)} />
+                    </Tooltip>
+                    <Tooltip TransitionComponent={Zoom} title="View on Site">
+                      <OpenIcon onClick={() => this.handleOpenInSite(hit.recipe.url)} />
+                    </Tooltip>
+                    <Menu recipe={hit.recipe} handleAddRecipeToCalendar={this.props.handleAddRecipeToCalendar} />
                   </IconButton>
                 }
               />
@@ -120,8 +103,8 @@ class TitlebarGridList extends React.Component {
         </GridList>
       </div>
     );
-  }
-}
+  };
+};
 
 TitlebarGridList.propTypes = {
   classes: PropTypes.object.isRequired

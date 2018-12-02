@@ -9,7 +9,7 @@ module.exports = {
       where: {
         email: newuser.email
       }
-    }).then(function(result) {
+    }).then(function (result) {
       console.log(result.length);
       if (result.length != 0) {
         console.log(`\nEmail already taken! \n`);
@@ -27,12 +27,12 @@ module.exports = {
           .then(data => {
             res.json({ data: data });
           })
-          .catch(function(err) {
+          .catch(function (err) {
             console.log(err);
             res.json(err);
             // res.status(422).json(err.errors[0].message);
           });
-      }
+      };
     });
   },
 
@@ -63,7 +63,7 @@ module.exports = {
         .then(data => {
           return res.json({ data: data });
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err);
           return res.json({ err });
         });
@@ -87,7 +87,7 @@ module.exports = {
           // console.log(`DB query result is ${JSON.stringify(data)}`)
           return res.json({ hits: data });
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err);
           return res.json({ err });
         });
@@ -107,5 +107,4 @@ module.exports = {
       return res.json({ message: `recipe removed from favorites` });
     });
   },
-
 };
