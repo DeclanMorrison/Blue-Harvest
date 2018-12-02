@@ -34,9 +34,9 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(value => {
+          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(value => (
             <MenuItem onClick={() => this.handleClose(value)}>{value}</MenuItem>
-          })}
+          ))}
         </Menu>
       </React.Fragment>
     );
