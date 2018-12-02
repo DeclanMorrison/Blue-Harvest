@@ -27,7 +27,7 @@ class App extends React.Component {
   };
 
   callBackendAPI = async () => {
-    const response = await fetch('/');
+    const response = await fetch('/login');
     const body = await response.json();
 
     if (response.status !== 200) {
