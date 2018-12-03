@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-
+import { FormGroup, FormControlLabel, Checkbox } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -18,14 +15,10 @@ const styles = {
   checkBox: {
     display: 'flex',
     alignItems: 'center',
-
   }
-
-
 };
 
 class CheckboxLabels extends React.Component {
-
 
   state = {
     checked: false,
@@ -40,7 +33,6 @@ class CheckboxLabels extends React.Component {
 
     return (
       <FormGroup row className={classes.checkBox}>
-
         <FormControlLabel
           control={
             <Checkbox
@@ -55,14 +47,11 @@ class CheckboxLabels extends React.Component {
             </Checkbox>
           }
         />
-
         {this.state.checked ? <strike>{this.props.children}</strike> : <span>{this.props.children}</span>}
-
-
       </FormGroup>
     );
-  }
-}
+  };
+};
 
 CheckboxLabels.propTypes = {
   classes: PropTypes.object.isRequired,

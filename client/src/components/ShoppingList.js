@@ -6,6 +6,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Grocery from './img/Grocery.jpg'
+import CardMedia from '@material-ui/core/CardMedia';
+import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
   root: {
@@ -13,10 +16,13 @@ const styles = theme => ({
     maxWidth: 752
   },
   demo: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: 'white'
   },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`
+  },
+  gridItem: {
+    width: "500px"
   }
 });
 
@@ -40,102 +46,27 @@ class ShoppingList extends React.Component {
           alignItems="center"
           justify="center"
         >
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Monday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Monday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Tuesday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Tuesday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Wednesday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Wednesday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Thursday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Thursday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Friday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Friday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Saturday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Saturday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Sunday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Sunday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography variant="h6" className={classes.title}>
-              {`Monday ${recipes.Monday.label}`}
-            </Typography>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={`Ingredients ${recipes.Monday.ingredientLines}`}
-                />
-              </ListItem>
-            </List>
-          </Grid>
+          {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ,'Saturday', 'Sunday'].map(day => {
+            if (Object.keys(recipes[day]).length !== 0) {
+              return (
+              <Grid item className={classes.gridItem}>
+                <Typography variant="h4" component="h3" >
+                  {day}
+                  <Typography variant="h6">{recipes[day].label}</Typography>
+                </Typography>
+                <List>
+                  {recipes[day].ingredientLines.map(value => (
+                    <ListItem>
+                      <ListItemText primary={value}/>
+                    </ListItem>
+                  ))}
+                </List>
+              </Grid>
+              );
+            } else {
+              return;
+            };
+          })}
         </Grid>
       </div>
     );

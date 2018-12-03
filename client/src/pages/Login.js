@@ -68,14 +68,14 @@ class MediaCard extends Component {
     return (
       <div className={classes.root}>
         <Card className={classes.card}>
-          <CardActionArea>
-            <CardContent>
-              <img className={classes.logo} src={Logo} alt="logo"/>
-              <Typography component="p">
-                To start please Log In. If you do not have an account please Sign Up
+          
+          <CardContent>
+            <img className={classes.logo} src={Logo} alt="logo"/>
+            <Typography component="p">
+              To start please Log In. If you do not have an account please Sign Up
             </Typography>
-            </CardContent>
-          </CardActionArea>
+          </CardContent>  
+          
           <CardActions style={{ justifyContent: 'center' }}>
             <Button onClick={this.handleClickOpenLogin} size="large" color="primary" className={classes.button}>
               <HowToReg />

@@ -19,16 +19,21 @@ class App extends React.Component {
     isLoggedIn : false
   };
 
+  componentWillMount = () => {
+    if (!this.state.isLoggedIn && window.location.pathname === "/home"){
+      window.location.replace("/login");
+    };
+  };
+
   updateLoginState = () => {
     this.setState({isLoggedIn : !this.state.isLoggedIn});
   };
 
   render () {
-    // const { classes } = this.props;
     return (
         <Routes/>
     );
-  }
+  };
 };
 
 export default withStyles(styles)(App);

@@ -1,16 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Done from "@material-ui/icons/Done";
-import Close from "@material-ui/icons/Close";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Done, Close } from "@material-ui/icons";
 import API from "../../utils/API";
-
 
 class SignupDialog extends React.Component {
 
@@ -45,7 +37,7 @@ class SignupDialog extends React.Component {
         : (passwordMatch = false);
 
     console.log(user);
-    
+
     let errors = {};
     let formIsValid = true;
 
@@ -92,27 +84,25 @@ class SignupDialog extends React.Component {
     }
 
     if (user["password"] !== "") {
-      if (!user["password"].match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,16}$/)) {
+      const pattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,16}$/);
+      if (!pattern.test(user['password'])) {
         formIsValid = false;
         errors["password"] = "*Please enter secure and strong password.";
-      }
+      };
     }
 
     if (formIsValid) {
       API.signUp(user).then((res) => {
-          console.log(`success! result: ${res.data}\n`);
-          this.props.handleCloseSignup();
-          this.props.handleOpenLogin();
-          this.setState({ redirect: true, user:res.data.user});
-        })
+        console.log(`success! result: ${res.data}\n`);
+        this.props.handleCloseSignup();
+        this.props.handleOpenLogin();
+        this.setState({ user: res.data.user });
+      })
     } else {
       console.log("Form did not submit");
+      this.setState({ errors: errors });
+      console.log(errors);
     };
-
-    // this.setState({
-    //   errors: errors
-    // });
-    // return formIsValid;
   };
 
   render() {
@@ -133,56 +123,124 @@ class SignupDialog extends React.Component {
             <DialogContentText>
               To sign up please fill in the fields below.
             </DialogContentText>
-            <TextField
-              value={this.state.firstName}
-              onChange={this.handleOnChange}
-              autoFocus
-              margin="dense"
-              id="firstName"
-              label="First Name"
-              type="string"
-              fullWidth
-            />
-            <TextField
-              value={this.state.lastName}
-              onChange={this.handleOnChange}
-              // autoFocus
-              margin="dense"
-              id="lastName"
-              label="Last Name"
-              type="string"
-              fullWidth
-            />
-            <TextField
-              value={this.state.email}
-              onChange={this.handleOnChange}
-              // autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              type="string"
-              fullWidth
-            />
-            <TextField
-              value={this.state.password}
-              onChange={this.handleOnChange}
-              // autoFocus
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-            />
-            <TextField
-              value={this.state.confirmpass}
-              onChange={this.handleOnChange}
-              // autoFocus
-              margin="dense"
-              id="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              fullWidth
-            />
+            {this.state.errors["firstName"] === undefined ?
+              <TextField
+                value={this.state.firstName}
+                onChange={this.handleOnChange}
+                autoFocus
+                margin="dense"
+                id="firstName"
+                label="First Name"
+                type="string"
+                fullWidth
+              /> :
+              <TextField
+                error
+                value={this.state.firstName}
+                onChange={this.handleOnChange}
+                autoFocus
+                margin="dense"
+                id="firstName"
+                label={this.state.errors["firstName"]}
+                type="string"
+                fullWidth
+              />}
+
+            {this.state.errors["lastName"] === undefined ?
+              <TextField
+                value={this.state.lastName}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="lastName"
+                label="Last Name"
+                type="string"
+                fullWidth
+              /> :
+              <TextField
+                error
+                value={this.state.lastName}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="lastName"
+                label={this.state.errors["lastName"]}
+                type="string"
+                fullWidth
+              />
+            }
+            {this.state.errors["email"] === undefined ?
+              <TextField
+                value={this.state.email}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="email"
+                label="Email Address"
+                type="string"
+                fullWidth
+              /> :
+              <TextField
+                error
+                value={this.state.email}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="email"
+                label={this.state.errors["email"]}
+                type="string"
+                fullWidth
+              />
+            }
+
+            {this.state.errors["password"] === undefined ?
+              <TextField
+                value={this.state.password}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="password"
+                label="Password"
+                type="password"
+                fullWidth
+              /> :
+              <TextField
+                error
+                value={this.state.password}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="password"
+                label={this.state.errors["password"]}
+                type="password"
+                fullWidth
+              />
+            }
+
+            {this.state.password !== this.state.confirmPassword ?
+              <TextField
+                error
+                value={this.state.confirmpass}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="confirmPassword"
+                label="*Passwords do not match"
+                type="password"
+                fullWidth
+              /> :
+              <TextField
+                value={this.state.confirmpass}
+                onChange={this.handleOnChange}
+                // autoFocus
+                margin="dense"
+                id="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                fullWidth
+              />
+            }
+
           </DialogContent>
           <DialogActions>
             <Button onClick={this.props.handleCloseSignup} color="secondary">
@@ -196,9 +254,8 @@ class SignupDialog extends React.Component {
           </DialogActions>
         </Dialog>
       );
-    }
-
-  }
-}
+    };
+  };
+};
 
 export default SignupDialog;

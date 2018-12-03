@@ -1,8 +1,6 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
+import { Snackbar, Zoom, Tooltip} from "@material-ui/core";
 import StarIcon from "@material-ui/icons/StarRateRounded";
-import { Zoom, Tooltip } from "@material-ui/core";
 
 class FavoritesSB extends React.Component {
   state = {
@@ -30,12 +28,6 @@ class FavoritesSB extends React.Component {
     const { vertical, horizontal, open } = this.state;
     return (
       <div>
-        {/* <Button
-          onClick={this.handleClick({ vertical: "top", horizontal: "center" })}
-        >
-          Top-Center
-        </Button> */}
-
         <Tooltip TransitionComponent={Zoom} title="Add to Favorites">
           <StarIcon onClick={this.handleClick({ vertical: "top", horizontal: "center" })}
           />
@@ -56,7 +48,7 @@ class FavoritesSB extends React.Component {
         />
       </div>
     );
-  }
-}
+  };
+};
 
 export default FavoritesSB;

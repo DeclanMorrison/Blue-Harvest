@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardContent, Typography } from '@material-ui/core';
 
 const styles = {
   card: {
@@ -26,9 +22,6 @@ function SimpleCard(props) {
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {props.children}
         </Typography>
-        {/* <Typography variant="h5" component="h2">
-          {props.children}
-        </Typography> */}
       </CardContent>
     </Card>
   );

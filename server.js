@@ -9,7 +9,7 @@ let passport = require("./config/passport");
 // const routes = require("./routes");
 const app = express();
 var db = require("./models");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

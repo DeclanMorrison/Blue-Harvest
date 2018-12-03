@@ -1,22 +1,17 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Done from "@material-ui/icons/Done";
-import Close from "@material-ui/icons/Close";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Done, Close } from "@material-ui/icons";
 import API from "../../utils/API";
+import red from '@material-ui/core/colors/red';
 
 class LoginDialog extends React.Component {
 
   state = {
     email: "",
     password: "",
-    redirect: false
+    redirect: false,
+    failed: false
   };
 
   handleOnChange = event => {
@@ -33,7 +28,8 @@ class LoginDialog extends React.Component {
       API.login(email, password).then(res => {
         if (res.data.message !== "user authenticated") {
           console.log(`user not authenticated`);
-         
+          this.setState({ failed: true, email: "", password: "" });
+
         } else {
           console.log(`success! result: ${res.data.message}`);
           this.props.handleCloseLogin();
@@ -54,6 +50,11 @@ class LoginDialog extends React.Component {
     this.props.handleCloseLogin();
   };
 
+  handleClose = () => {
+    this.setState({ failed: false });
+    this.props.handleCloseLogin();
+  };
+
   render() {
     const { redirect } = this.state;
 
@@ -69,10 +70,14 @@ class LoginDialog extends React.Component {
           <DialogTitle id="form-dialog-title">Log in</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              <div className="statusMessage" />
-              To Log in please fill in the fields below.
+              {this.state.failed ?
+                <div className="statusMessage" style={{ color: red[500] }}>
+                  Incorrect email or password.
+              </div> :
+                <div className="statusMessage">
+                  To Log in please fill in the fields below.
+              </div>}
             </DialogContentText>
-
             <TextField
               value={this.state.email}
               onChange={this.handleOnChange}
@@ -98,7 +103,7 @@ class LoginDialog extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.handleCloseLogin} color="secondary">
+            <Button onClick={this.handleClose} color="secondary">
               <Close />
               Cancel
             </Button>
@@ -110,7 +115,7 @@ class LoginDialog extends React.Component {
           </DialogActions>
         </Dialog>
       );
-    }
-  }
-}
+    };
+  };
+};
 export default LoginDialog;

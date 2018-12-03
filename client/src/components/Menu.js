@@ -36,17 +36,13 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={() => this.handleClose("Monday")}>Monday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Tuesday")}>Tuesday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Wednesday")}>Wednesday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Thursday")}>Thursday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Friday")}>Friday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Saturday")}>Saturday</MenuItem>
-          <MenuItem onClick={() => this.handleClose("Sunday")}>Sunday</MenuItem>
+        {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(day => (
+          <MenuItem onClick={() => this.handleClose(day)}>{day}</MenuItem>
+        ))}
         </Menu>
       </React.Fragment>
     );
-  }
-}
+  };
+};
 
 export default SimpleMenu;
