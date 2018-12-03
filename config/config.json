@@ -1,22 +1,23 @@
 {
     "development": {
-      "username": "root",
-      "password": "root",
-      "database": "cookit_dev",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
+      "username": "epf0cjxoii2yvisj",
+      "password": "djiu5lzyo1y7m5uq",
+      "database": "k47k4f79j1b0vzqc",
+      "host": "ocvwlym0zv3tcn68.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql",
+      "logging": false
     },
     "test": {
-      "username": "root",
-      "password": "root",
-      "database": "cookit_test",
-      "host": "127.0.0.1",
+      "username": "epf0cjxoii2yvisj",
+      "password": "djiu5lzyo1y7m5uq",
+      "database": "k47k4f79j1b0vzqc",
+      "host": "ocvwlym0zv3tcn68.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "dialect": "mysql",
       "logging": false
     },
     "production": {
       "username": "epf0cjxoii2yvisj",
-      "password": "mcegpbin1z8vcjl5",
+      "password": "djiu5lzyo1y7m5uq",
       "database": "k47k4f79j1b0vzqc",
       "host": "ocvwlym0zv3tcn68.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "dialect": "mysql",
