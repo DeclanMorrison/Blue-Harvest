@@ -92,7 +92,7 @@ class SignupDialog extends React.Component {
     }
 
     if (user["password"] !== "") {
-      if (!user["password"].match(/^.*((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/)) {
+      if (!user["password"].match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,16}$/)) {
         formIsValid = false;
         errors["password"] = "*Please enter secure and strong password.";
       }
@@ -120,7 +120,7 @@ class SignupDialog extends React.Component {
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     } else {
       return (
         <Dialog
