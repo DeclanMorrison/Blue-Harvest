@@ -54,7 +54,7 @@ class SignupDialog extends React.Component {
       errors["firstName"] = "*Please enter your First Name.";
     }
 
-    if (typeof user["firstName"] !== undefined) {
+    if (user["firstName"] !== "") {
       if (!user["firstName"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["firstName"] = "*Please enter alphabet characters only.";
@@ -65,7 +65,7 @@ class SignupDialog extends React.Component {
       errors["lastName"] = "*Please enter your Last Name.";
     }
 
-    if (typeof user["lastName"] !== undefined) {
+    if (user["lastName"] !== "") {
       if (!user["lastName"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["lastName"] = "*Please enter alphabet characters only.";
@@ -77,7 +77,7 @@ class SignupDialog extends React.Component {
       errors["email"] = "*Please enter your email.";
     }
 
-    if (typeof user["email"] !== undefined) {
+    if (user["email"] !== "") {
       //regular expression for email validation
       var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
       if (!pattern.test(user["email"])) {
@@ -91,7 +91,7 @@ class SignupDialog extends React.Component {
       errors["password"] = "*Please enter your password.";
     }
 
-    if (typeof user["password"] !== undefined) {
+    if (user["password"] !== "") {
       if (!user["password"].match(/^.*((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/)) {
         formIsValid = false;
         errors["password"] = "*Please enter secure and strong password.";
@@ -105,7 +105,9 @@ class SignupDialog extends React.Component {
           this.props.handleOpenLogin();
           this.setState({ redirect: true, user:res.data.user});
         })
-    } 
+    } else {
+      console.log("Form did not submit");
+    };
 
     // this.setState({
     //   errors: errors
